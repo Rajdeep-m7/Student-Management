@@ -11,6 +11,21 @@ Route::get('/',function(){
     return view('home');
 });
 
+Route::get('/students', function(){
+    return view('student');
+});
+
+Route::get('/course', function(){
+    return view('course');
+});
+
+Route::get('/add-student', function(){
+    return view('add-student');
+});
+Route::get('/add-course', function(){
+    return view('add-course');
+});
+
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
