@@ -26,35 +26,48 @@
                     <a href="/course" class="text-gray-700 hover:text-blue-600 font-semibold">
                         Courses
                     </a>
-
-                    <a href="#" class="text-red-500 hover:text-red-700 font-semibold">
-                        Logout
+                    <a href="/profile" class="text-gray-700 hover:text-blue-600 font-semibold">
+                        Profile
                     </a>
+
+                    <form method="POST" action="{{ route('logout') }}">
+                        @csrf
+                        <button type="submit" class="font-semibold bg-red-500 p-1 px-2 rounded text-white">
+                            Logout
+                        </button>
+                    </form>
                 </div>
                 @endauth
 
             </div>
 
         </div>
-            @auth
-                <div class="md:hidden flex justify-between space-x-4 pb-5">
-                    <a href="/dashboard" class="text-gray-700 hover:text-blue-600">
-                        Dashboard
-                    </a>
+        @auth
+        <div class="md:hidden w-full flex justify-around gap-3 pb-5">
+            <a href="/dashboard" class="text-gray-700 hover:text-blue-600">
+                Dashboard
+            </a>
 
-                    <a href="/students" class="text-gray-700 hover:text-blue-600">
-                        Students
-                    </a>
+            <a href="/students" class="text-gray-700 hover:text-blue-600">
+                Students
+            </a>
 
-                    <a href="/course" class="text-gray-700 hover:text-blue-600">
-                        Courses
-                    </a>
+            <a href="/course" class="text-gray-700 hover:text-blue-600">
+                Courses
+            </a>
 
-                    <a href="#" class="text-red-500 hover:text-red-700">
-                        Logout
-                    </a>
-                </div>
-                @endauth
+            <a href="/profile" class="text-gray-700 hover:text-blue-600">
+                Profile
+            </a>
+
+            <form method="POST" action="{{ route('logout') }}">
+                @csrf
+                <button type="submit" class="font-semibold">
+                    Logout
+                </button>
+            </form>
+        </div>
+        @endauth
 
     </div>
 </nav>

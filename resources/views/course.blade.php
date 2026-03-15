@@ -1,84 +1,90 @@
 @extends('app')
+
 @section('content')
 
-<div class="p-4 sm:p-6 min-h-screen">
+<div class="p-6 min-h-screen bg-gray-50">
 
-  <div class="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-3 mb-6">
+  <div class="max-w-6xl mx-auto">
 
-    <h2 class="text-xl sm:text-2xl font-semibold">
-      Courses
-    </h2>
+    <div class="flex justify-between items-center mb-6">
+      <h2 class="text-2xl font-bold text-gray-700">
+        Course Management
+      </h2>
 
-    <a href="/add-course"
-      class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 font-semibold w-full sm:w-auto text-center">
-      + Add Course
-    </a>
+      <a href="/add-course"
+        class="bg-indigo-600 text-white px-4 py-2 rounded-lg shadow hover:bg-indigo-700 transition">
+        + Add Course
+      </a>
+    </div>
 
-  </div>
+    <div class="bg-white shadow-lg rounded-xl overflow-hidden">
 
-  <div class="bg-white shadow-md rounded-lg overflow-x-auto max-w-6xl mx-auto">
+      <table class="w-full text-sm text-left">
 
-    <table class="min-w-full text-center text-sm sm:text-base">
+        <thead class="bg-gray-100 text-gray-600 uppercase text-xs">
+          <tr>
+            <th class="px-6 py-4">Code</th>
+            <th class="px-6 py-4">Name</th>
+            <th class="px-6 py-4">Description</th>
+            <th class="px-6 py-4">Students</th>
+            <th class="px-6 py-4 text-center">Actions</th>
+          </tr>
+        </thead>
 
-      <thead class="bg-gray-200">
-        <tr>
-          <th class="p-3 whitespace-nowrap">Code</th>
-          <th class="p-3 whitespace-nowrap">Name</th>
-          <th class="p-3 whitespace-nowrap">Description</th>
-          <th class="p-3 whitespace-nowrap">Students</th>
-          <th class="p-3 whitespace-nowrap">Actions</th>
-        </tr>
-      </thead>
+        <tbody class="divide-y">
 
-      <tbody>
+          @foreach($courses as $course)
 
-        @foreach($courses as $course)
+          <tr class="hover:bg-gray-50 transition">
 
-        <tr class="border-b hover:bg-gray-50">
+            <td class="px-6 py-4 font-medium">
+              {{ $course->code }}
+            </td>
 
-          <td class="p-3 whitespace-nowrap">
-            {{ $course->code }}
-          </td>
+            <td class="px-6 py-4">
+              {{ $course->name }}
+            </td>
 
-          <td class="p-3 whitespace-nowrap">
-            {{ $course->name }}
-          </td>
+            <td class="px-6 py-4 text-gray-500">
+              {{ $course->description }}
+            </td>
 
-          <td class="p-3 whitespace-nowrap">
-            {{ $course->description }}
-          </td>
+            <td class="px-6 py-4 font-semibold text-indigo-600">
+              {{ $course->students_count }}
+            </td>
 
-          <td class="p-3 whitespace-nowrap">
-            {{ $course->students_count }}
-          </td>
+            <td class="px-6 py-4 flex justify-center gap-3">
 
-          <td class="p-3 flex justify-center gap-2">
+              <a href="{{ route('courses.edit', $course->id) }}"
+                class="bg-blue-500 text-white px-3 py-1 rounded-lg hover:bg-blue-600 transition text-sm">
+                Edit
+              </a>
 
-            <a href="#"
-              class="bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-600 text-sm">
-              Edit
-            </a>
+              <form action="{{ route('courses.destroy',$course->id) }}"
+                method="POST"
+                onsubmit="return confirm('Are you sure you want to delete this course?')">
 
-            <form action="#" method="POST">
-              @csrf
-              @method('DELETE')
+                @csrf
+                @method('DELETE')
 
-              <button
-                class="bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600 text-sm">
-                Delete
-              </button>
+                <button
+                  class="bg-red-500 text-white px-3 py-1 rounded-lg hover:bg-red-600 transition text-sm">
+                  Delete
+                </button>
 
-            </form>
+              </form>
 
-          </td>
+            </td>
 
-        </tr>
+          </tr>
 
-        @endforeach
+          @endforeach
 
-      </tbody>
+        </tbody>
 
-    </table>
+      </table>
+
+    </div>
 
   </div>
 

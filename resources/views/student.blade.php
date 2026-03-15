@@ -10,8 +10,8 @@
     </h2>
 
     <a href="/add-student"
-       class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 font-semibold w-full sm:w-auto text-center">
-       + Add Student
+      class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 font-semibold w-full sm:w-auto text-center">
+      + Add Student
     </a>
 
   </div>
@@ -41,15 +41,28 @@
           <td class="p-3 whitespace-nowrap">{{ $student->course->name ?? 'No Course' }}</td>
           <td class="p-3 whitespace-nowrap">{{ $student->enrollment_date }}</td>
 
-          <td class="p-3 flex gap-2">
+          <td class="p-3 flex items-center gap-2">
 
-            <button class="bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-600 text-sm">
+            <!-- Edit Button -->
+            <a href="{{ route('students.edit', $student->id) }}"
+              class="bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-600 text-sm">
               Edit
-            </button>
+            </a>
 
-            <button class="bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600 text-sm">
-              Delete
-            </button>
+            <!-- Delete Button -->
+            <form action="{{ route('students.destroy', $student->id) }}"
+              method="POST"
+              onsubmit="return confirm('Are you sure you want to delete this student?')">
+
+              @csrf
+              @method('DELETE')
+
+              <button type="submit"
+                class="bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600 text-sm">
+                Delete
+              </button>
+
+            </form>
 
           </td>
         </tr>
