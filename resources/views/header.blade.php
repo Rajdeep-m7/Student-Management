@@ -15,19 +15,19 @@
                 @endguest
                 @auth
                 <div class="hidden md:flex gap-5">
-                    <a href="/dashboard" class="text-gray-700 hover:text-blue-600">
+                    <a href="/dashboard" class="text-gray-700 hover:text-blue-600 font-semibold">
                         Dashboard
                     </a>
 
-                    <a href="/students" class="text-gray-700 hover:text-blue-600">
+                    <a href="/student" class="text-gray-700 hover:text-blue-600 font-semibold">
                         Students
                     </a>
 
-                    <a href="/course" class="text-gray-700 hover:text-blue-600">
+                    <a href="/course" class="text-gray-700 hover:text-blue-600 font-semibold">
                         Courses
                     </a>
 
-                    <a href="#" class="text-red-500 hover:text-red-700">
+                    <a href="#" class="text-red-500 hover:text-red-700 font-semibold">
                         Logout
                     </a>
                 </div>

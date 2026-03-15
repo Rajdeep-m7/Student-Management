@@ -3,7 +3,6 @@
 
 <div class="p-4 sm:p-6 min-h-screen">
 
-  <!-- Header -->
   <div class="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-3 mb-6">
 
     <h2 class="text-xl sm:text-2xl font-semibold">
@@ -17,9 +16,9 @@
 
   </div>
 
-  <div class="bg-white shadow-md rounded-lg overflow-x-auto">
+  <div class="bg-white shadow-md rounded-lg overflow-x-auto max-w-6xl mx-auto mt-10">
 
-    <table class="min-w-full text-left text-sm sm:text-base">
+    <table class="min-w-full text-left text-sm sm:text-base ">
 
       <thead class="bg-gray-200">
         <tr>
@@ -33,13 +32,14 @@
       </thead>
 
       <tbody>
+        @foreach($students as $student)
 
         <tr class="border-b hover:bg-gray-50">
-          <td class="p-3 whitespace-nowrap">101</td>
-          <td class="p-3 whitespace-nowrap">Rahul Sharma</td>
-          <td class="p-3 whitespace-nowrap break-all">rahul@gmail.com</td>
-          <td class="p-3 whitespace-nowrap">BCA</td>
-          <td class="p-3 whitespace-nowrap">20/12/2023</td>
+          <td class="p-3 whitespace-nowrap">{{ $student->id }}</td>
+          <td class="p-3 whitespace-nowrap">{{ $student->name }}</td>
+          <td class="p-3 whitespace-nowrap break-all">{{ $student->email }}</td>
+          <td class="p-3 whitespace-nowrap">{{ $student->course->name ?? 'No Course' }}</td>
+          <td class="p-3 whitespace-nowrap">{{ $student->enrollment_date }}</td>
 
           <td class="p-3 flex gap-2">
 
@@ -53,6 +53,7 @@
 
           </td>
         </tr>
+        @endforeach
 
       </tbody>
 

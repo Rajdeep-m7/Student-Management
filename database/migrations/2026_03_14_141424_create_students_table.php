@@ -14,9 +14,9 @@ return new class extends Migration
         Schema::create('students', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('email');
-            $table->string('phone');
-            $table->foreignId('course_id')->constrained()->onDelete('cascade');
+            $table->string('email')->unique();
+            $table->foreignId('course_id')->constrained()->cascadeOnDelete();
+            $table->date('enrollment_date');
             $table->timestamps();
         });
     }

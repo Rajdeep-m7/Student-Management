@@ -10,13 +10,13 @@
     </h2>
 
     <a href="/add-course"
-       class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 font-semibold w-full sm:w-auto text-center">
-       + Add Course
+      class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 font-semibold w-full sm:w-auto text-center">
+      + Add Course
     </a>
 
   </div>
 
-  <div class="bg-white shadow-md rounded-lg overflow-x-auto">
+  <div class="bg-white shadow-md rounded-lg overflow-x-auto max-w-6xl mx-auto">
 
     <table class="min-w-full text-center text-sm sm:text-base">
 
@@ -32,24 +32,49 @@
 
       <tbody>
 
+        @foreach($courses as $course)
+
         <tr class="border-b hover:bg-gray-50">
-          <td class="p-3 whitespace-nowrap">101</td>
-          <td class="p-3 whitespace-nowrap">BCA</td>
-          <td class="p-3 whitespace-nowrap">Computer Application</td>
-          <td class="p-3 whitespace-nowrap">5</td>
+
+          <td class="p-3 whitespace-nowrap">
+            {{ $course->code }}
+          </td>
+
+          <td class="p-3 whitespace-nowrap">
+            {{ $course->name }}
+          </td>
+
+          <td class="p-3 whitespace-nowrap">
+            {{ $course->description }}
+          </td>
+
+          <td class="p-3 whitespace-nowrap">
+            {{ $course->students_count }}
+          </td>
 
           <td class="p-3 flex justify-center gap-2">
 
-            <button class="bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-600 text-sm">
+            <a href="#"
+              class="bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-600 text-sm">
               Edit
-            </button>
+            </a>
 
-            <button class="bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600 text-sm">
-              Delete
-            </button>
+            <form action="#" method="POST">
+              @csrf
+              @method('DELETE')
+
+              <button
+                class="bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600 text-sm">
+                Delete
+              </button>
+
+            </form>
 
           </td>
+
         </tr>
+
+        @endforeach
 
       </tbody>
 

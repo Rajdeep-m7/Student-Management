@@ -7,7 +7,7 @@
 
         <h2 class="text-2xl font-semibold mb-6">Add New Student</h2>
 
-        <form method="POST">
+        <form action="/students/store" method="POST">
             @csrf
 
             <div class="mb-4">
@@ -25,14 +25,18 @@
             <div class="mb-4">
                 <label class="block mb-2 font-medium text-gray-700">Course</label>
 
-                <select
-                    class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-200">
+                <select name="course_id"
+                    class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
 
-                    <option>Select Course</option>
-                    <option>BCA</option>
-                    <option>BBA</option>
-                    <option>MCA</option>
-                    <option>MBA</option>
+                    <option value="">Select Course</option>
+
+                    @foreach($courses as $course)
+
+                    <option value="{{ $course->id }}">
+                        {{ $course->name }}
+                    </option>
+
+                    @endforeach
 
                 </select>
             </div>
@@ -44,7 +48,8 @@
             </div>
 
             <div class="flex justify-end space-x-2">
-                <a
+
+                <a href="/student"
                     class="bg-gray-400 text-white px-4 py-2 rounded">
                     Cancel
                 </a>
